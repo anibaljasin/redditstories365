@@ -3,6 +3,7 @@ video_files/*
 *zip
 
 .idea
+.python-version
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,0 +1,7 @@
+moviepy==1.*
+scipy==1.7.*
+praw==7.*
+google-cloud-texttospeech==2.*
+Pillow==8.*
+selenium==4.*
+webdriver-manager==3.*
