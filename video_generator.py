@@ -1,11 +1,12 @@
 import logging
 import os
+import time
 from typing import List
 
 from moviepy.editor import *
 
 
-def generate_video(base_folder: str, comments: List, output_video: str = "video.mp4"):
+def generate_video(comments: List, base_folder: str = "video_files", filename: str = "video"):
     screensize = (1080, 1920)
     margin = 0.5
 
@@ -45,5 +46,6 @@ def generate_video(base_folder: str, comments: List, output_video: str = "video.
     composite_title_audio = CompositeAudioClip([title_audio] + audio_files)
 
     video_clip.audio = composite_title_audio
-    video_clip.write_videofile(output_video, fps=25, codec='mpeg4')
+    video_filename = os.path.join(base_folder, f'{filename}-{time.strftime("%Y%m%d-%H%M%S")}.mp4')
+    video_clip.write_videofile(video_filename, fps=25)
 

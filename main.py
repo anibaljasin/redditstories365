@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 def main():
     logger.info("Generating reddit title and comments")
-    submission_url = "https://www.reddit.com/r/AskReddit/comments/qjlcdf/whats_the_worst_plot_hole_youve_seen_in_a_well/"
+    submission_url = "https://www.reddit.com/r/AskReddit/comments/hf78zr/whats_a_small_act_of_kindness_you_were_once_shown/"
 
     title, comments, submission = get_reddit_text(submission_url=submission_url)
     url = f"{submission.url}?sort=top"
@@ -24,7 +24,7 @@ def main():
     for i, comment in enumerate(comments):
         generate_audio_from_text(comment.body, f"video_files/comment-{i}.mp3")
 
-    generate_video("video_files", comments, "video_files/video.mp4")
+    generate_video(comments=comments)
 
 
 if __name__ == '__main__':

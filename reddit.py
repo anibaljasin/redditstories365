@@ -19,8 +19,6 @@ def get_reddit_text(submission_url: str):
     comments = []
     got_comments = False
 
-    logger.info(f"title: {submission.title}")
-
     submission.comment_sort = "top"  # this needs to be on top, because if will fetch the submission with top comments
     title = submission.title
 
