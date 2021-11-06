@@ -1,6 +1,9 @@
 # Project ignore
 video_files/*
+assets/*
 *zip
+*.mp4
+*.mp3
 
 .idea
 .python-version
