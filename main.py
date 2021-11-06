@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 def main():
     logger.info("Generating reddit title and comments")
-    submission_url = "https://www.reddit.com/r/AskReddit/comments/hf78zr/whats_a_small_act_of_kindness_you_were_once_shown/"
+    submission_url = "https://www.reddit.com/r/AskReddit/comments/n9jyqk/people_who_quit_their_jobs_on_the_first_day_what/?sort=top"
 
     title, comments, submission = get_reddit_text(submission_url=submission_url)
     url = f"{submission.url}?sort=top"
