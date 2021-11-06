@@ -4,9 +4,11 @@ import time
 from typing import List
 
 from moviepy.editor import *
+from moviepy.video.fx.loop import loop
 
 
-def generate_video(comments: List, base_folder: str = "video_files", filename: str = "video"):
+def generate_video(comments: List, base_folder: str = "video_files", filename: str = "video",
+                   bg_video_filename: str = "bg_video.mp4"):
     screensize = (1080, 1920)
     margin = 0.5
 
@@ -40,12 +42,15 @@ def generate_video(comments: List, base_folder: str = "video_files", filename: s
         video_images.append(video.set_start(video_start))
 
     video_clip = CompositeVideoClip([title_img] + video_images, size=screensize)
-    bg_img = ImageClip("video_files/bg.jpg").set_duration(video_clip.duration).set_start(0).resize(screensize)
-    video_clip = CompositeVideoClip([bg_img] + [title_img] + video_images, size=screensize)
+
+    bg_video = VideoFileClip(bg_video_filename)
+    bg_video = loop(bg_video)
+    bg_video = bg_video.set_duration(video_clip.duration).set_start(0).resize(screensize)
+
+    video_clip = CompositeVideoClip([bg_video] + [title_img] + video_images, size=screensize)
 
     composite_title_audio = CompositeAudioClip([title_audio] + audio_files)
 
     video_clip.audio = composite_title_audio
     video_filename = os.path.join(base_folder, f'{filename}-{time.strftime("%Y%m%d-%H%M%S")}.mp4')
     video_clip.write_videofile(video_filename, fps=25)
-
