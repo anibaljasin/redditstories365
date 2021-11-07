@@ -8,7 +8,7 @@ from moviepy.video.fx.loop import loop
 
 
 def generate_video(comments: List, base_folder: str = "video_files", filename: str = "video",
-                   bg_video_filename: str = "bg_video.mp4"):
+                   background_video: str = "bg_video.mp4"):
     screensize = (1080, 1920)
     margin = 0.5
 
@@ -43,7 +43,7 @@ def generate_video(comments: List, base_folder: str = "video_files", filename: s
 
     video_clip = CompositeVideoClip([title_img] + video_images, size=screensize)
 
-    bg_video = VideoFileClip(bg_video_filename)
+    bg_video = VideoFileClip(background_video)
     bg_video = loop(bg_video)
     bg_video = bg_video.set_duration(video_clip.duration).set_start(0).resize(screensize)
 

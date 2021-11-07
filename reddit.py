@@ -13,7 +13,7 @@ reddit = Reddit(
 )
 
 
-def get_reddit_text(submission_url: str):
+def get_reddit_text(submission_url: str, number_of_comments: int = 3):
     logger.info("Starting to get reddit submission info...")
     submission = reddit.submission(url=submission_url)
     comments = []
@@ -25,7 +25,7 @@ def get_reddit_text(submission_url: str):
     if submission.over_18:
         raise Exception("Cannot parse over 18 submissions")
 
-    for top_level_comment in submission.comments[:3]:
+    for top_level_comment in submission.comments[:number_of_comments]:
         if isinstance(top_level_comment, MoreComments):
             continue
         logger.info(f"comment: {top_level_comment.body}, score:{top_level_comment.score}")
