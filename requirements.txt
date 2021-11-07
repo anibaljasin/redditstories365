@@ -5,3 +5,4 @@ google-cloud-texttospeech==2.*
 Pillow==8.*
 selenium==4.*
 webdriver-manager==3.*
+click==8.*
